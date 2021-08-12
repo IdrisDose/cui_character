@@ -53,4 +53,10 @@ Admins can use `/identity`, `/features`, `/style`, `/apparel` commands to open r
 
 ## Known Issues
 
-### Soon, still WIP
+* Tattoos will transfer from character to character if then logout, then go to place on their other character
+
+* Doing said thing above causes what seems like all the fucking tattoos just to somehow delete themself from everything...
+
+* Sometimes the only way to update tattoos is to go to the tattoo shop
+
+* You will be stuck if you press the ESC key
