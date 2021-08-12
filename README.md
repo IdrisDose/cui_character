@@ -39,8 +39,12 @@ I have made improvements in places where I thought Rockstar's creator didn't do 
 * Optional clothes component/prop blacklisting (uncomment `client/blacklist.lua` in fxmanifest client_scripts, then edit the file)
 
 ## Requirements and usage notes
-**I intended this to be fully functional resource with minimal configuration. Editing and saving characters to the database *should* work out-of-the-box.**
 
+[xnTattoos](https://github.com/ihyajb/xnTattoos)
+
+**Editing and saving characters to the database *should* work out-of-the-box.**
+
+## Credits
 Thanks to [SaltyGrandpa](https://github.com/SaltyGrandpa) for helping to make it standalone
 
 Thanks to DudeRockTV#7528 for letting me use what he started and make it better!
