@@ -272,6 +272,8 @@ AddEventHandler('cui_character:close', function(save)
         TriggerServerEvent('cui_character:save', model, currentChar)
     else
         LoadCharacter(oldChar)
+        TriggerEvent('SmallTattoos:loadTattoo')
+        --add tat event
     end
 
     -- Release textures
@@ -1483,7 +1485,7 @@ AddEventHandler('cui_character:loadClothes', function(data, ped)
     if data.sex ~= 1 then
         isMale = true
     end
-    LoadModel(isMale, playIdleWhenLoaded)
+    --LoadModel(isMale, playIdleWhenLoaded)
 
     --TODO: Possibly pull these out to separate functions
     --local playerPed = PlayerPedId()
