@@ -889,7 +889,7 @@ function GetComponentsData(id)
                 -- only named components
                 if gxt ~= '' then
                     label = GetLabelText(gxt)
-                    if label ~= 'NULL' then
+                    --if label ~= 'NULL' then
                         local blacklisted = false
 
                         if componentBlacklist ~= nil then
@@ -910,7 +910,7 @@ function GetComponentsData(id)
                                 texture = texture
                             })
                         end
-                    end
+                    --end
                 end
             end
         end
@@ -1546,7 +1546,7 @@ AddEventHandler('cui_character:loadClothes', function(data, ped)
     -- Clothing and Accessories
     SetPedComponentVariation(playerPed, 8,  data.tshirt_1, data.tshirt_2, 2)        -- Undershirts
     SetPedComponentVariation(playerPed, 11, data.torso_1,  data.torso_2,  2)        -- Jackets
-    SetPedComponentVariation(playerPed, 3,  data.arms,     data.arms_2,   2)        -- Torsos
+    SetPedComponentVariation(playerPed, 3,  data.arms_1,     data.arms_2,   2)        -- Torsos
     SetPedComponentVariation(playerPed, 10, data.decals_1, data.decals_2, 2)        -- Decals
     SetPedComponentVariation(playerPed, 4,  data.pants_1,  data.pants_2,  2)        -- Legs
     SetPedComponentVariation(playerPed, 6,  data.shoes_1,  data.shoes_2,  2)        -- Shoes

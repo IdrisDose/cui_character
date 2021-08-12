@@ -75,7 +75,7 @@ h2, h3 {
 
 .cameraview.active {
     background-color: #f0f0f0;
-    border: 0.3vh solid #2d6eb9;
+    border: 0.3vh solid #912db9; /*2d6eb9*/
 }
 
 .cameraview > img {
@@ -165,7 +165,7 @@ h2, h3 {
 
 #tabs .tablinks.active {
     background-color: #f0f0f0;
-    border-top: 0.5vh solid #2d6eb9;
+    border-top: 0.5vh solid #912db9;
     color: black;
 }
 
@@ -281,7 +281,7 @@ input[type="radio"] {
 .group {
     width: 100%;
     padding-bottom: 3vh;
-    border-bottom: 0.1vh solid rgba(255, 255, 255, 0.2);
+    border-bottom: 0.1vh solid rgba(255, 255, 255, 0.5);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -462,14 +462,14 @@ h3 {
 .datainput .controls input::-webkit-datetime-edit-day-field:focus,
 .datainput .controls input::-webkit-datetime-edit-month-field:focus,
 .datainput .controls input::-webkit-datetime-edit-year-field:focus {
-    background: #2d6eb9;
+    background: #912db9;
     color: #f0f0f0;
     outline: none;
 }
 
 .datainput .controls input::selection {
     color: #f0f0f0;
-    background: #2d6eb9;
+    background: #912db9;
 }
 
 .datainput .controls input[type=text] {
