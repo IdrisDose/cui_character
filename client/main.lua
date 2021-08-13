@@ -21,14 +21,6 @@ local oldChar = {}
 
 local currentIdentity = nil
 
-QBCore = nil
-Citizen.CreateThread(function()
-	while QBCore == nil do
-		TriggerEvent('QBCore:GetObject', function(obj) QBCore = obj end)
-		Citizen.Wait(200)
-	end
-end)
-
 AddEventHandler('QBCore:Client:OnPlayerLoaded', function()
     TriggerServerEvent('cui_character:requestPlayerData')
     isPlayerReady = true
@@ -273,33 +265,14 @@ AddEventHandler('cui_character:close', function(save)
 
     -- Saving and discarding changes
     if save then
-        QBCore.Functions.TriggerCallback('SmallTattoos:GetPlayerTattoos', function(tattooList)
-            print(json.encode(tattooList))
-            if tattooList then
-                ClearPedDecorations(PlayerPedId())
-                for k, v in pairs(tattooList) do
-                    if v.Count ~= nil then
-                        for i = 1, v.Count do
-                            SetPedDecoration(PlayerPedId(), v.collection, v.nameHash)
-                        end
-                    else
-                        SetPedDecoration(PlayerPedId(), v.collection, v.nameHash)
-                    end
-                end
-                currentTattoos = tattooList
-            else
-                print("Error saving Tattoo")
-            end
-        end)
         local model = GetEntityModel(PlayerPedId())
-        local playertat = currentTattoos
         for k, v in pairs(oldChar) do
             oldChar[k] = currentChar[k]
         end
-        TriggerServerEvent('cui_character:save', model, currentChar, playertat)
-        --TriggerEvent('SmallTattoos:loadTattoo')
+        TriggerServerEvent('cui_character:save', model, currentChar)
     else
         LoadCharacter(oldChar) -- Fix Tattoo Event
+        TriggerEvent('SmallTattoos:loadTattoo')
     end
 
     -- Release textures
@@ -1299,7 +1272,6 @@ function LoadCharacter(data, playIdleWhenLoaded, callback)
     SetPedComponentVariation(playerPed, 9,  data.bproof_1, data.bproof_2, 2)        -- Vests
     SetPedComponentVariation(playerPed, 7,  data.neckarm_1,  data.neckarm_2,  2)    -- Necklaces/Chains/Ties/Suspenders
     SetPedComponentVariation(playerPed, 5,  data.bags_1,   data.bags_2,   2)        -- Bags
-    TriggerEvent('SmallTattoos:loadTattoo') -- May Need to remove
 
     if data.helmet_1 == -1 then
         ClearPedProp(playerPed, 0)

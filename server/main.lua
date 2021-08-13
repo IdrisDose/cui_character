@@ -2,18 +2,12 @@ QBCore = nil
 TriggerEvent('QBCore:GetObject', function(obj) QBCore = obj end)
 
 RegisterServerEvent('cui_character:save')
-AddEventHandler('cui_character:save', function(model, data, tattoos)
+AddEventHandler('cui_character:save', function(model, data)
     local src = source
     local Player = QBCore.Functions.GetPlayer(src)
-    if model ~= nil and data ~= nil and tattoos ~= nil then
+    if model ~= nil and data ~= nil then 
         exports['ghmattimysql']:execute("DELETE FROM `playerskins` WHERE `citizenid` = '"..Player.PlayerData.citizenid.."'", function()
-            exports['ghmattimysql']:execute("INSERT INTO `playerskins` (`citizenid`, `model`, `skin`, `active`, `tattoos`) VALUES (@citizenid, @model, @skin, @active, @tattoos)", {
-                ['@citizenid'] = Player.PlayerData.citizenid, 
-                ['@model'] = model, 
-                ['@skin'] = json.encode(data),
-                ['@active'] = 1,
-                ['@tattoos'] = tattoos
-            })
+            exports['ghmattimysql']:execute("INSERT INTO `playerskins` (`citizenid`, `model`, `skin`, `active`) VALUES ('"..Player.PlayerData.citizenid.."', '"..model.."', '"..json.encode(data).."', 1)")
         end)
     end
 end)
