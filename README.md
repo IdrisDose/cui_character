@@ -46,6 +46,9 @@ I have made improvements in places where I thought Rockstar's creator didn't do 
 **Editing and saving characters to the database *should* work out-of-the-box.**
 
 ## Credits
+
+Orignally made by [PainedPsyche](https://forum.cfx.re/t/release-cleanui-cui-character/1914841)
+
 Thanks to [SaltyGrandpa](https://github.com/SaltyGrandpa) for helping to make it standalone
 
 Thanks to DudeRockTV#7528 for letting me use what he started and make it better!
