@@ -274,7 +274,6 @@ AddEventHandler('cui_character:close', function(save)
     -- Saving and discarding changes
     if save then
         QBCore.Functions.TriggerCallback('SmallTattoos:GetPlayerTattoos', function(tattooList)
-            print(json.encode(tattooList))
             if tattooList then
                 ClearPedDecorations(PlayerPedId())
                 for k, v in pairs(tattooList) do
@@ -446,8 +445,26 @@ end)
 AddEventHandler('cui_character:updateClothes', function(data, save, updateOld, callback)
     UpdateClothes(data, updateOld)
     if save then
+        QBCore.Functions.TriggerCallback('SmallTattoos:GetPlayerTattoos', function(tattooList)
+            if tattooList then
+                ClearPedDecorations(PlayerPedId())
+                for k, v in pairs(tattooList) do
+                    if v.Count ~= nil then
+                        for i = 1, v.Count do
+                            SetPedDecoration(PlayerPedId(), v.collection, v.nameHash)
+                        end
+                    else
+                        SetPedDecoration(PlayerPedId(), v.collection, v.nameHash)
+                    end
+                end
+                currentTattoos = tattooList
+            else
+                print("Error saving Tattoo")
+            end
+        end)
         local model = GetEntityModel(PlayerPedId())
-        TriggerServerEvent('cui_character:save', model, currentChar)
+        local playertat = currentTattoos
+        TriggerServerEvent('cui_character:save', model, currentChar, playertat)
     end
     if callback then
         callback()
