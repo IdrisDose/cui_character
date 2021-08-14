@@ -273,35 +273,13 @@ AddEventHandler('cui_character:close', function(save)
 
     -- Saving and discarding changes
     if save then
-        QBCore.Functions.TriggerCallback('SmallTattoos:GetPlayerTattoos', function(tattooList)
-            print(json.encode(tattooList))
-            if tattooList then
-                ClearPedDecorations(PlayerPedId())
-                for k, v in pairs(tattooList) do
-                    if v.Count ~= nil then
-                        for i = 1, v.Count do
-                            SetPedDecoration(PlayerPedId(), v.collection, v.nameHash)
-                        end
-                    else
-                        SetPedDecoration(PlayerPedId(), v.collection, v.nameHash)
-                    end
-                end
-                currentTattoos = tattooList
-            else
-                print("Error saving Tattoo")
-            end
-        end)
         local model = GetEntityModel(PlayerPedId())
-        local playertat = currentTattoos
         for k, v in pairs(oldChar) do
             oldChar[k] = currentChar[k]
         end
         TriggerServerEvent('cui_character:save', model, currentChar)
-        TriggerServerEvent('cui_character:save', model, currentChar, playertat)
-        --TriggerEvent('SmallTattoos:loadTattoo')
     else
-        LoadCharacter(oldChar) -- Fix Tattoo Event
-        TriggerEvent('SmallTattoos:loadTattoo')
+        LoadCharacter(oldChar)
     end
 
     -- Release textures
@@ -696,14 +674,11 @@ RegisterNUICallback('updateApparelComponent', function(data, cb)
     -- Some clothes have 'forced components' that change torso and other parts.
     -- adapted from: https://gist.github.com/root-cause/3b80234367b0c856d60bf5cb4b826f86
     local hash = GetHashNameForComponent(playerPed, component, currentChar[drawableKey], currentChar[textureKey])
-    --print('main component hash ' .. hash)
     local fcDrawable, fcTexture, fcType = -1, -1, -1
     local fcCount = GetShopPedApparelForcedComponentCount(hash) - 1
-    --print('found ' .. fcCount + 1 .. ' forced components')
     for fcId = 0, fcCount do
         local fcNameHash, fcEnumVal, f5, f7, f8 = -1, -1, -1, -1, -1
         fcNameHash, fcEnumVal, fcType = GetForcedComponent(hash, fcId)
-        --print('forced component [' .. fcId .. ']: nameHash: ' .. fcNameHash .. ', enumVal: ' .. fcEnumVal .. ', type: ' .. fcType--[[.. ', field5: ' .. f5 .. ', field7: ' .. f7 .. ', field8: ' .. f8 --]])
 
         -- only set torsos, using other types here seems to glitch out
         if fcType == 3 then
@@ -1301,7 +1276,6 @@ function LoadCharacter(data, playIdleWhenLoaded, callback)
     SetPedComponentVariation(playerPed, 9,  data.bproof_1, data.bproof_2, 2)        -- Vests
     SetPedComponentVariation(playerPed, 7,  data.neckarm_1,  data.neckarm_2,  2)    -- Necklaces/Chains/Ties/Suspenders
     SetPedComponentVariation(playerPed, 5,  data.bags_1,   data.bags_2,   2)        -- Bags
-    TriggerEvent('SmallTattoos:loadTattoo')
 
     if data.helmet_1 == -1 then
         ClearPedProp(playerPed, 0)
