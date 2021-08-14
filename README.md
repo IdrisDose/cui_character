@@ -41,8 +41,6 @@ I have made improvements in places where I thought Rockstar's creator didn't do 
 
 ## Requirements and usage notes
 
-[xnTattoos](https://github.com/ihyajb/xnTattoos)
-
 **Editing and saving characters to the database *should* work out-of-the-box.**
 
 ## Credits
@@ -58,4 +56,3 @@ Thanks to DudeRockTV#7528 for letting me use what he started and make it better!
 * Some clothing seems to be missing
 * Gloves / Arms only half work (useable tho)
 * Sometimes on character first creation the camera will be stuck inside a persons body
-* Tattoo's need some work dont but are useable. See Known Issues on [xnTattoos](https://github.com/ihyajb/xnTattoos) for more info
